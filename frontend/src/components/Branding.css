@@ -1,0 +1,38 @@
+.section-branding {
+  margin-top: 32px;
+}
+
+.section-branding h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.branding-content {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.branding-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.branding-tagline {
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 480px) {
+  .branding-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

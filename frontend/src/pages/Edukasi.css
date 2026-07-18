@@ -1,0 +1,32 @@
+.edukasi-list {
+  padding-top: 16px;
+}
+
+.edukasi-list .back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.edukasi-list select {
+  margin: 12px 0;
+}
+
+.edukasi-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.edukasi-items li {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.edukasi-items .kategori-tag {
+  font-size: 12px;
+  color: #777;
+  margin-left: 6px;
+}

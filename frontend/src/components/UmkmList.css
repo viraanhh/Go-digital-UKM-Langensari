@@ -1,0 +1,55 @@
+.umkm-list {
+  margin-top: 24px;
+}
+
+.umkm-filter {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.umkm-filter input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.umkm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.umkm-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  transition: box-shadow 0.2s;
+}
+
+.umkm-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.umkm-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.umkm-card h3 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+.umkm-card p {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.umkm-card a {
+  display: inline-block;
+  margin-top: 8px;
+}

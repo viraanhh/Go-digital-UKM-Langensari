@@ -1,0 +1,35 @@
+.section-legalitas {
+  margin-top: 32px;
+}
+
+.section-legalitas h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.legalitas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.legalitas-item {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legalitas-item .label {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.legalitas-item .value {
+  font-size: 15px;
+  font-weight: 500;
+}

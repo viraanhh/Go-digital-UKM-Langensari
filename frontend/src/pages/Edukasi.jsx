@@ -2,8 +2,15 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getEdukasi } from '../services/api';
 import './Edukasi.css';
+import Spinner from '../components/Spinner';
+import useTitle from '../hooks/useTitle';
 
 function Edukasi() {
+  useTitle(
+    'Edukasi | UMKM Go Digital',
+    'Materi edukasi hukum dan keuangan untuk pelaku UMKM RW 06 Langensari.'
+  );
+
   const [edukasi, setEdukasi] = useState([]);
   const [loading, setLoading] = useState(true);
   const [kategoriFilter, setKategoriFilter] = useState('');
@@ -18,7 +25,7 @@ function Edukasi() {
     kategoriFilter === '' || item.kategori === kategoriFilter
   );
 
-  if (loading) return <p>Memuat materi edukasi...</p>;
+  if (loading) return <Spinner text="Memuat materi edukasi..." />;
 
   return (
     <div className="container edukasi-list">

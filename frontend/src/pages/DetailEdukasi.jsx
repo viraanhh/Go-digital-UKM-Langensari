@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getEdukasiDetail } from '../services/api';
+import Spinner from '../components/Spinner';
+import useTitle from '../hooks/useTitle';
 
 function DetailEdukasi() {
   const { id } = useParams();
@@ -20,7 +22,11 @@ function DetailEdukasi() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <p>Memuat...</p>;
+  useTitle(
+    edukasi ? `${edukasi.judul} | UMKM Go Digital` : 'Memuat... | UMKM Go Digital'
+  );
+
+  if (loading) return <Spinner />;
 
   if (notFound) {
     return (

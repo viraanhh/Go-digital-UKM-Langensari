@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import DetailUmkm from './pages/DetailUmkm';
 import Edukasi from './pages/Edukasi';
 import DetailEdukasi from './pages/DetailEdukasi';
+import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -15,10 +16,11 @@ function App() {
         <Route path="/umkm/:id" element={<DetailUmkm />} />
         <Route path="/edukasi" element={<Edukasi />} />
         <Route path="/edukasi/:id" element={<DetailEdukasi />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
   );
 }
 
-export default App;
+export default App; 

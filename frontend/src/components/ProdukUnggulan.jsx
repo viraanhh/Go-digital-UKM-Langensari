@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getProdukByUmkm } from '../services/api';
 import './ProdukUnggulan.css';
+import Spinner from './Spinner';
 
 function formatRupiah(harga) {
   if (harga === null || harga === undefined) return null;
@@ -23,8 +24,8 @@ function ProdukUnggulan({ umkmId }) {
       <h2>Produk Unggulan</h2>
 
       {loading ? (
-        <p>Memuat produk...</p>
-      ) : produk.length === 0 ? (
+        <Spinner text="Memuat produk..." />
+        ) : produk.length === 0 ? (
         <p className="info-kosong">Data produk akan segera diperbarui.</p>
       ) : (
         <div className="produk-grid">

@@ -7,15 +7,25 @@ export const getKategori = async () => {
 };
 
 export const getUmkm = async () => {
-    const response = await fetch(`${API_URL}/umkm`);
-    const result = await response.json();
-    return result.data;
+    try {
+        const response = await fetch(`${API_URL}/umkm`);
+        if (!response.ok) throw new Error('Server error');
+        const result = await response.json();
+        return result.data;
+    } catch (error) {
+        throw new Error('SERVER_ERROR');
+    }
 };
 
 export const getUmkmDetail = async (id) => {
-    const response = await fetch(`${API_URL}/umkm/${id}`);
-    const result = await response.json();
-    return result;
+    try {
+        const response = await fetch(`${API_URL}/umkm/${id}`);
+        if (!response.ok) throw new Error('Server error');
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        throw new Error('SERVER_ERROR');
+    }
 };
 
 export const getEdukasi = async () => {

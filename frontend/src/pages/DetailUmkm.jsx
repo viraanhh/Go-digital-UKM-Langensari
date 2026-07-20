@@ -7,12 +7,16 @@ import Legalitas from '../components/Legalitas';
 import Branding from '../components/Branding';
 import Kontak from '../components/Kontak';
 import MediaPemasaran from '../components/MediaPemasaran';
+import Spinner from '../components/Spinner';
+import ServerError from './ServerError';
+import useTitle from '../hooks/useTitle';
 
 function DetailUmkm() {
   const { id } = useParams();
   const [umkm, setUmkm] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [serverError, setServerError] = useState(false);
 
   useEffect(() => {
     getUmkmDetail(id)
@@ -23,10 +27,17 @@ function DetailUmkm() {
           setNotFound(true);
         }
       })
+      .catch(() => setServerError(true))
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <p>Memuat data...</p>;
+  useTitle(
+    umkm ? `${umkm.nama_usaha} | UMKM Go Digital` : 'Memuat... | UMKM Go Digital',
+    umkm?.deskripsi || 'Informasi lengkap UMKM di RW 06 Langensari.'
+  );
+
+  if (serverError) return <ServerError />;
+  if (loading) return <Spinner text="Memuat data UMKM..." />;
 
   if (notFound) {
     return (

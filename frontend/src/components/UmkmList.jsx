@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { getUmkm, getKategori } from '../services/api';
 import UmkmCard from './UmkmCard';
+import Spinner from './Spinner';
+import ServerError from '../pages/ServerError';
 import './UmkmList.css';
 
 function UmkmList() {
   const [umkm, setUmkm] = useState([]);
   const [kategoriList, setKategoriList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [serverError, setServerError] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [kategoriFilter, setKategoriFilter] = useState('');
   const [sortOrder, setSortOrder] = useState('');
@@ -14,6 +17,7 @@ function UmkmList() {
   useEffect(() => {
     getUmkm()
       .then((data) => setUmkm(data))
+      .catch(() => setServerError(true))
       .finally(() => setLoading(false));
 
     getKategori().then((data) => setKategoriList(data));
@@ -31,7 +35,8 @@ function UmkmList() {
       return 0;
     });
 
-  if (loading) return <p>Memuat data UMKM...</p>;
+  if (serverError) return <ServerError />;
+  if (loading) return <Spinner text="Memuat data UMKM..." />;
 
   return (
     <div className="umkm-list">

@@ -1,8 +1,7 @@
 const pool = require('../config/db');
 
-// Ambil semua UMKM, sekaligus nama kategorinya
 const getAllUmkm = async () => {
-    const [rows] = await pool.query(`
+    const { rows } = await pool.query(`
         SELECT umkm.*, kategori_umkm.nama_kategori
         FROM umkm
         JOIN kategori_umkm ON umkm.kategori_id = kategori_umkm.id
@@ -10,15 +9,14 @@ const getAllUmkm = async () => {
     return rows;
 };
 
-// Ambil 1 UMKM berdasarkan id
 const getUmkmById = async (id) => {
-    const [rows] = await pool.query(`
+    const { rows } = await pool.query(`
         SELECT umkm.*, kategori_umkm.nama_kategori
         FROM umkm
         JOIN kategori_umkm ON umkm.kategori_id = kategori_umkm.id
-        WHERE umkm.id = ?
+        WHERE umkm.id = $1
     `, [id]);
-    return rows[0]; // ambil objek pertama saja, bukan array
+    return rows[0];
 };
 
 module.exports = { getAllUmkm, getUmkmById };

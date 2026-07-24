@@ -12,7 +12,7 @@ function UmkmList() {
   const [serverError, setServerError] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [kategoriFilter, setKategoriFilter] = useState('');
-  const [sortOrder, setSortOrder] = useState('');
+  const [rtFilter, setRtFilter] = useState('');
 
   useEffect(() => {
     getUmkm()
@@ -23,17 +23,16 @@ function UmkmList() {
     getKategori().then((data) => setKategoriList(data));
   }, []);
 
-  const filteredUmkm = umkm
-    .filter((item) => {
-      const cocokNama = item.nama_usaha.toLowerCase().includes(searchTerm.toLowerCase());
-      const cocokKategori = kategoriFilter === '' || item.kategori_id === Number(kategoriFilter);
-      return cocokNama && cocokKategori;
-    })
-    .sort((a, b) => {
-      if (sortOrder === 'az') return a.nama_usaha.localeCompare(b.nama_usaha);
-      if (sortOrder === 'za') return b.nama_usaha.localeCompare(a.nama_usaha);
-      return 0;
-    });
+  const daftarRt = [...new Set(umkm.map((item) => item.rt))]
+    .filter((rt) => rt !== null)
+    .sort((a, b) => a - b);
+
+  const filteredUmkm = umkm.filter((item) => {
+    const cocokNama = item.nama_usaha.toLowerCase().includes(searchTerm.toLowerCase());
+    const cocokKategori = kategoriFilter === '' || item.kategori_id === Number(kategoriFilter);
+    const cocokRt = rtFilter === '' || item.rt === Number(rtFilter);
+    return cocokNama && cocokKategori && cocokRt;
+  });
 
   if (serverError) return <ServerError />;
   if (loading) return <Spinner text="Memuat data UMKM..." />;
@@ -61,12 +60,13 @@ function UmkmList() {
         </select>
 
         <select
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
+          value={rtFilter}
+          onChange={(e) => setRtFilter(e.target.value)}
         >
-          <option value="">Urutkan</option>
-          <option value="az">Nama A-Z</option>
-          <option value="za">Nama Z-A</option>
+          <option value="">Semua RT</option>
+          {daftarRt.map((rt) => (
+            <option key={rt} value={rt}>RT {String(rt).padStart(2, '0')}</option>
+          ))}
         </select>
       </div>
 

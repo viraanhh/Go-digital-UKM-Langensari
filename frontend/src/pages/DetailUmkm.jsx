@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getUmkmDetail } from '../services/api';
-import ProdukUnggulan from '../components/ProdukUnggulan';
-import './DetailUmkm.css';
+import AvatarFoto from '../components/AvatarFoto';
+import Produk from '../components/Produk';
 import Legalitas from '../components/Legalitas';
-import Branding from '../components/Branding';
 import Kontak from '../components/Kontak';
-import MediaPemasaran from '../components/MediaPemasaran';
 import Spinner from '../components/Spinner';
 import ServerError from './ServerError';
 import useTitle from '../hooks/useTitle';
+import './DetailUmkm.css';
 
 function DetailUmkm() {
   const { id } = useParams();
@@ -32,8 +31,7 @@ function DetailUmkm() {
   }, [id]);
 
   useTitle(
-    umkm ? `${umkm.nama_usaha} | UMKM Go Digital` : 'Memuat... | UMKM Go Digital',
-    umkm?.deskripsi || 'Informasi lengkap UMKM di RW 06 Langensari.'
+    umkm ? `${umkm.nama_usaha} | UMKM Go Digital` : 'Memuat... | UMKM Go Digital'
   );
 
   if (serverError) return <ServerError />;
@@ -51,54 +49,40 @@ function DetailUmkm() {
   return (
     <div className="container detail-umkm">
       <Link className="back-link" to="/">← Kembali ke Home</Link>
-      <h1>{umkm.nama_usaha}</h1>
 
-      <div className="detail-content">
-        <img
-          src={umkm.foto_url || 'https://placehold.co/400x300?text=Belum+Ada+Foto'}
-          alt={umkm.nama_usaha}
+      <div className="umkm-header">
+        <AvatarFoto
+          src={umkm.logo_url || umkm.foto_url}
+          nama={umkm.nama_usaha}
+          className="umkm-avatar"
         />
-
-        <div className="detail-info">
-          <p><strong>Pemilik:</strong> {umkm.nama_pemilik || 'Data belum tersedia'}</p>
-          <p><strong>Kategori:</strong> {umkm.nama_kategori || 'Data belum tersedia'}</p>
-          <p><strong>Alamat:</strong> {umkm.alamat || 'Data belum tersedia'}</p>
-          <p><strong>Deskripsi:</strong> {umkm.deskripsi || 'Data belum tersedia'}</p>
-          <p><strong>Jam Operasional:</strong> {umkm.jam_operasional || 'Data belum tersedia'}</p>
-          <p><strong>WhatsApp:</strong> {umkm.no_whatsapp || 'Data belum tersedia'}</p>
+        <div className="umkm-header-info">
+          <h1>{umkm.nama_usaha}</h1>
+          <p className="umkm-header-meta">
+            {umkm.nama_kategori || 'Kategori belum tersedia'} • {umkm.alamat || 'Alamat belum tersedia'}
+          </p>
         </div>
       </div>
 
-      <ProdukUnggulan umkmId={id} />
+      <Produk umkmId={id} />
       <Legalitas umkmId={id} />
-      <Branding umkmId={id} />
       <Kontak noWhatsapp={umkm.no_whatsapp} />
-      <MediaPemasaran umkmId={id} />
 
-      {umkm.latitude && umkm.longitude ? (
-        <div className="detail-map">
-          <p><strong>Lokasi:</strong></p>
-          <iframe
-            title={`Lokasi ${umkm.nama_usaha}`}
-            width="100%"
-            height="300"
-            style={{ border: 0 }}
-            src={`https://www.google.com/maps?q=${umkm.latitude},${umkm.longitude}&output=embed`}
-          ></iframe>
+      <section className="detail-lokasi">
+        <h2>Lokasi</h2>
+        {umkm.google_maps_url ? (
           <a
-            href={`https://www.google.com/maps?q=${umkm.latitude},${umkm.longitude}`}
+            href={umkm.google_maps_url}
             target="_blank"
             rel="noopener noreferrer"
+            className="btn-buka-maps"
           >
-            Buka di Google Maps →
+            📍 Buka di Google Maps
           </a>
-        </div>
-      ) : (
-        <div className="detail-map">
-          <p><strong>Lokasi belum tersedia</strong></p>
-          <p>Data koordinat UMKM akan segera diperbarui setelah proses pemetaan selesai.</p>
-        </div>
-      )}
+        ) : (
+          <p className="info-kosong">Lokasi belum tersedia via Google Maps.</p>
+        )}
+      </section>
     </div>
   );
 }

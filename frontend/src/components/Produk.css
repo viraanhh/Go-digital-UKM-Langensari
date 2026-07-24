@@ -1,0 +1,28 @@
+.section-produk {
+  margin-top: 32px;
+}
+
+.section-produk h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.produk-galeri-item {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.produk-galeri-item:hover {
+  opacity: 0.85;
+}

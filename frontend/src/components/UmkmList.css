@@ -31,11 +31,19 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.umkm-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 6px;
+.umkm-card-thumb{
+  width:100%;
+  aspect-ratio:4/3;
+
+  border-radius:6px;
+
+  object-fit:cover;
+
+  display:block;
+}
+
+.avatar-placeholder.umkm-card-thumb{
+  display:flex;
 }
 
 .umkm-card h3 {

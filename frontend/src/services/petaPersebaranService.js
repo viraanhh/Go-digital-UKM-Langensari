@@ -1,10 +1,10 @@
 import { supabase } from './supabase';
 
-export const getBrandingByUmkm = async (umkmId) => {
+export const getPetaPersebaran = async () => {
     const { data, error } = await supabase
-        .from('branding')
+        .from('peta_persebaran')
         .select('*')
-        .eq('umkm_id', umkmId)
+        .limit(1)
         .maybeSingle();
 
     if (error) throw new Error('SERVER_ERROR');

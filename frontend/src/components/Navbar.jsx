@@ -1,20 +1,16 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
 
-  // Tutup menu otomatis setiap kali halaman berpindah
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
+  const tutupMenu = () => setIsOpen(false);
 
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        <Link to="/" className="navbar-brand">UMKM Go Digital</Link>
+        <Link to="/" className="navbar-brand" onClick={tutupMenu}>UMKM Go Digital</Link>
 
         <button
           className="navbar-toggle"
@@ -27,8 +23,8 @@ function Navbar() {
         </button>
 
         <ul className={`navbar-menu ${isOpen ? 'navbar-menu-open' : ''}`}>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/edukasi">Edukasi</Link></li>
+          <li><Link to="/" onClick={tutupMenu}>Home</Link></li>
+          <li><Link to="/edukasi" onClick={tutupMenu}>Edukasi</Link></li>
         </ul>
       </div>
     </nav>

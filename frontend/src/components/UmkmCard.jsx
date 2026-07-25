@@ -13,7 +13,7 @@ function UmkmCard({ umkm }) {
       <p><strong>Kategori:</strong> {umkm.nama_kategori}</p>
       <p><strong>Alamat:</strong> {umkm.alamat}</p>
       <Link to={`/umkm/${umkm.id}`}>
-        <button>Lihat Detail</button>
+        <button className="umkm-card-cta">Lihat Detail →</button>
       </Link>
     </div>
   );

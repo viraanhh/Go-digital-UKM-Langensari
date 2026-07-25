@@ -7,8 +7,19 @@
   margin-bottom: 16px;
 }
 
+.edukasi-list h1 {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.edukasi-subtitle {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin: 4px 0 16px;
+}
+
 .edukasi-list select {
-  margin: 12px 0;
+  margin-bottom: 16px;
 }
 
 .edukasi-items {
@@ -16,17 +27,56 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 12px;
 }
 
-.edukasi-items li {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px 16px;
+.edukasi-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.edukasi-items .kategori-tag {
-  font-size: 12px;
-  color: #777;
-  margin-left: 6px;
+.edukasi-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(2px);
+  text-decoration: none;
+}
+
+.edukasi-card-icon {
+  font-size: 26px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-light);
+  border-radius: var(--radius-sm);
+}
+
+.edukasi-card-body {
+  min-width: 0;
+}
+
+.edukasi-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.kategori-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  padding: 2px 10px;
+  border-radius: 999px;
+  text-transform: capitalize;
 }

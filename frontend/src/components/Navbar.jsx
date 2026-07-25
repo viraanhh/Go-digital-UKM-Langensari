@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
@@ -7,10 +7,16 @@ function Navbar() {
 
   const tutupMenu = () => setIsOpen(false);
 
+  function navLinkClass({ isActive }) {
+    return isActive ? 'nav-active' : '';
+  }
+
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        <Link to="/" className="navbar-brand" onClick={tutupMenu}>UMKM Go Digital</Link>
+        <NavLink to="/" className="navbar-brand" onClick={tutupMenu} aria-label="Beranda">
+          🏪
+        </NavLink>
 
         <button
           className="navbar-toggle"
@@ -23,8 +29,16 @@ function Navbar() {
         </button>
 
         <ul className={`navbar-menu ${isOpen ? 'navbar-menu-open' : ''}`}>
-          <li><Link to="/" onClick={tutupMenu}>Home</Link></li>
-          <li><Link to="/edukasi" onClick={tutupMenu}>Edukasi</Link></li>
+          <li>
+            <NavLink to="/" end onClick={tutupMenu} className={navLinkClass}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/edukasi" onClick={tutupMenu} className={navLinkClass}>
+              Edukasi
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

@@ -1,21 +1,26 @@
-import { useState, useEffect } from 'react';
-import { getKategori } from '../services/api';
+import './KategoriList.css';
 
-function KategoriList() {
-  const [kategori, setKategori] = useState([]);
-
-  useEffect(() => {
-    getKategori().then((data) => {
-      setKategori(data);
-    });
-  }, []);
-
-  if (kategori.length === 0) return null;
+function KategoriList({ kategoriList, activeKategori, onSelect }) {
+  if (kategoriList.length === 0) return null;
 
   return (
     <div className="kategori-list">
-      {kategori.map((k) => (
-        <span key={k.id} className="kategori-badge">{k.nama_kategori}</span>
+      <button
+        type="button"
+        className={`kategori-chip ${activeKategori === '' ? 'kategori-chip-active' : ''}`}
+        onClick={() => onSelect('')}
+      >
+        Semua
+      </button>
+      {kategoriList.map((k) => (
+        <button
+          type="button"
+          key={k.id}
+          className={`kategori-chip ${activeKategori === k.id ? 'kategori-chip-active' : ''}`}
+          onClick={() => onSelect(k.id)}
+        >
+          {k.nama_kategori}
+        </button>
       ))}
     </div>
   );

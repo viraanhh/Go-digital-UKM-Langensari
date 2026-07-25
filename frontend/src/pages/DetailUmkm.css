@@ -1,27 +1,33 @@
 .detail-umkm {
   padding-top: 16px;
+  padding-bottom: 32px;
 }
 
 .detail-umkm .back-link {
-  display: inline-block;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .umkm-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 20px;
+  background: linear-gradient(135deg, var(--color-primary-light), #fffdf7);
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 4px;
 }
 
 .umkm-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 12px;
-  border: 1px solid #eee;
+  width: 130px;
+  height: 130px;
+  border-radius: var(--radius-md);
+  border: 3px solid white;
   flex-shrink: 0;
   object-fit: cover;
   display: flex;
+  box-shadow: var(--shadow-md);
 }
 
 .avatar-placeholder.umkm-avatar {
@@ -29,36 +35,52 @@
 }
 
 .umkm-header-info h1 {
-  font-size: 22px;
-  margin-bottom: 4px;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--color-text);
 }
 
 .umkm-header-meta {
-  color: #666;
-  font-size: 13px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.detail-umkm > section {
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 20px !important;
 }
 
 .detail-lokasi {
-  margin-top: 32px;
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 20px;
 }
 
 .detail-lokasi h2 {
-  font-size: 20px;
+  font-size: 19px;
   margin-bottom: 12px;
 }
 
 .btn-buka-maps {
   display: inline-block;
-  background-color: #2563eb;
+  background-color: var(--color-primary);
   color: white;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 15px;
 }
 
 .btn-buka-maps:hover {
-  background-color: #1d4ed8;
+  background-color: var(--color-primary-dark);
   text-decoration: none;
 }
 
@@ -66,10 +88,16 @@
   .umkm-header {
     flex-direction: column;
     align-items: flex-start;
+    padding: 18px;
   }
 
   .umkm-avatar {
     width: 100px;
     height: 100px;
+  }
+
+  .detail-umkm > section,
+  .detail-lokasi {
+    padding: 16px;
   }
 }

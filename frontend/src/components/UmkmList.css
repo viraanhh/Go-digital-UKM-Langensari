@@ -1,11 +1,17 @@
 .umkm-list {
-  margin-top: 24px;
+  margin-top: 32px;
+}
+
+.umkm-list h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
 .umkm-filter {
   display: flex;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
@@ -17,47 +23,53 @@
 .umkm-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 
 .umkm-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 12px;
-  transition: box-shadow 0.2s;
+  background-color: var(--color-accent-bg);
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .umkm-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
 }
 
-.umkm-card-thumb{
-  width:100%;
-  aspect-ratio:4/3;
-
-  border-radius:6px;
-
-  object-fit:cover;
-
-  display:block;
+.umkm-card-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  display: block;
 }
 
-.avatar-placeholder.umkm-card-thumb{
-  display:flex;
+.avatar-placeholder.umkm-card-thumb {
+  display: flex;
 }
 
 .umkm-card h3 {
-  margin: 8px 0 4px;
+  margin: 12px 0 4px;
   font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 .umkm-card p {
   font-size: 13px;
-  color: #555;
+  color: var(--color-text-muted);
   margin-bottom: 4px;
 }
 
-.umkm-card a {
-  display: inline-block;
-  margin-top: 8px;
+.umkm-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  width: 100%;
+  justify-content: center;
 }

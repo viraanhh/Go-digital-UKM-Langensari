@@ -1,0 +1,36 @@
+.kategori-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 16px 0 8px;
+}
+
+.kategori-chip {
+  background-color: white;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.kategori-chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  box-shadow: none;
+}
+
+.kategori-chip-active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.kategori-chip-active:hover {
+  background-color: var(--color-primary-dark);
+  color: white;
+}

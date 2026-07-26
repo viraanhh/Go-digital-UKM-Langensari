@@ -1,9 +1,9 @@
 .edukasi-list {
   padding-top: 16px;
+  padding-bottom: 24px;
 }
 
 .edukasi-list .back-link {
-  display: inline-block;
   margin-bottom: 16px;
 }
 
@@ -15,11 +15,44 @@
 .edukasi-subtitle {
   color: var(--color-text-muted);
   font-size: 14px;
-  margin: 4px 0 16px;
+  margin: 6px 0 20px;
+  line-height: 1.7;
 }
 
-.edukasi-list select {
-  margin-bottom: 16px;
+.edukasi-filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.edukasi-chip {
+  background-color: white;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.edukasi-chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  box-shadow: none;
+}
+
+.edukasi-chip-active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.edukasi-chip-active:hover {
+  background-color: var(--color-primary-dark);
+  color: white;
 }
 
 .edukasi-items {

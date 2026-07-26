@@ -14,9 +14,18 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        <NavLink to="/" className="navbar-brand" onClick={tutupMenu} aria-label="Beranda">
-          🏪
-        </NavLink>
+        <ul className={`navbar-menu ${isOpen ? 'navbar-menu-open' : ''}`}>
+          <li>
+            <NavLink to="/" end onClick={tutupMenu} className={navLinkClass}>
+              Beranda
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/edukasi" onClick={tutupMenu} className={navLinkClass}>
+              Edukasi
+            </NavLink>
+          </li>
+        </ul>
 
         <button
           className="navbar-toggle"
@@ -27,19 +36,6 @@ function Navbar() {
           <span></span>
           <span></span>
         </button>
-
-        <ul className={`navbar-menu ${isOpen ? 'navbar-menu-open' : ''}`}>
-          <li>
-            <NavLink to="/" end onClick={tutupMenu} className={navLinkClass}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/edukasi" onClick={tutupMenu} className={navLinkClass}>
-              Edukasi
-            </NavLink>
-          </li>
-        </ul>
       </div>
     </nav>
   );

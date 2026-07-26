@@ -37,7 +37,7 @@ function DetailEdukasi() {
   if (notFound) {
     return (
       <div className="container">
-        <Link to="/edukasi">← Kembali ke Edukasi</Link>
+        <Link to="/edukasi" className="back-link">← Kembali ke Edukasi</Link>
         <p>Materi edukasi tidak ditemukan.</p>
       </div>
     );
@@ -45,7 +45,7 @@ function DetailEdukasi() {
 
   return (
     <div className="container">
-      <Link to="/edukasi">← Kembali ke Edukasi</Link>
+      <Link to="/edukasi" className="back-link">← Kembali ke Edukasi</Link>
       <h1>{edukasi.judul}</h1>
       <p><em>Kategori: {edukasi.kategori}</em></p>
 

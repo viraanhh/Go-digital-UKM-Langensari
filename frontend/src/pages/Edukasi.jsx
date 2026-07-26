@@ -5,11 +5,15 @@ import './Edukasi.css';
 import Spinner from '../components/Spinner';
 import useTitle from '../hooks/useTitle';
 
-function ikonTipeKonten(tipe) {
-  if (tipe === 'artikel') return '📄';
-  if (tipe === 'image') return '🖼️';
-  if (tipe === 'pdf') return '📕';
-  return '📁';
+const IKON_KATEGORI = {
+  hukum: '⚖️',
+  keuangan: '💰',
+  kesehatan: '🩺',
+  umum: '📌',
+};
+
+function ikonKategori(kategori) {
+  return IKON_KATEGORI[kategori] || '📁';
 }
 
 function Edukasi() {
@@ -38,18 +42,33 @@ function Edukasi() {
 
   return (
     <div className="container edukasi-list">
-      <Link className="back-link" to="/">← Kembali ke Home</Link>
+      <Link className="back-link" to="/">← Kembali ke Beranda</Link>
       <h1>Edukasi</h1>
-      <p className="edukasi-subtitle">Materi pendampingan untuk pengembangan usaha UMKM.</p>
+      <p className="edukasi-subtitle">
+        Materi pendampingan untuk pengembangan usaha UMKM, mencakup aspek hukum,
+        keuangan, kesehatan, dan pengetahuan umum yang bermanfaat bagi pelaku usaha
+        di RW 06 Langensari.
+      </p>
 
-      <select value={kategoriFilter} onChange={(e) => setKategoriFilter(e.target.value)}>
-        <option value="">Semua Kategori</option>
+      <div className="edukasi-filter-chips">
+        <button
+          type="button"
+          className={`edukasi-chip ${kategoriFilter === '' ? 'edukasi-chip-active' : ''}`}
+          onClick={() => setKategoriFilter('')}
+        >
+          Semua
+        </button>
         {daftarKategori.map((kategori) => (
-          <option key={kategori} value={kategori}>
-            {kategori.charAt(0).toUpperCase() + kategori.slice(1)}
-          </option>
+          <button
+            type="button"
+            key={kategori}
+            className={`edukasi-chip ${kategoriFilter === kategori ? 'edukasi-chip-active' : ''}`}
+            onClick={() => setKategoriFilter(kategori)}
+          >
+            {ikonKategori(kategori)} {kategori.charAt(0).toUpperCase() + kategori.slice(1)}
+          </button>
         ))}
-      </select>
+      </div>
 
       {filteredEdukasi.length === 0 ? (
         <p className="info-kosong">Belum ada materi edukasi.</p>
@@ -58,7 +77,7 @@ function Edukasi() {
           {filteredEdukasi.map((item) => (
             <li key={item.id}>
               <Link to={`/edukasi/${item.id}`} className="edukasi-card">
-                <span className="edukasi-card-icon">{ikonTipeKonten(item.tipe_konten)}</span>
+                <span className="edukasi-card-icon">{ikonKategori(item.kategori)}</span>
                 <div className="edukasi-card-body">
                   <h3 className="edukasi-card-title">{item.judul}</h3>
                   <span className="kategori-tag">{item.kategori}</span>

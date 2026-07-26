@@ -7,14 +7,15 @@
   font-size: 30px;
   font-weight: 800;
   color: var(--color-text);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .home-subtitle {
   color: var(--color-text-muted);
   font-size: 15px;
-  max-width: 480px;
-  margin: 0 auto 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
 @media (max-width: 480px) {

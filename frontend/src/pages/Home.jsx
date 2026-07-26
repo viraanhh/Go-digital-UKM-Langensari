@@ -28,16 +28,22 @@ function Home() {
       <div className="home-header">
         <h1>UMKM Go Digital RW 06 Langensari</h1>
         <p className="home-subtitle">
-          Temukan dan kenali usaha mikro, kecil, dan menengah di RW 06 Kelurahan Langensari.
+        Kelurahan Langensari terletak di Kecamatan Ungaran Barat, Kabupaten
+        Semarang, tidak jauh dari pusat Kota Ungaran. Wilayah ini memiliki potensi
+        ekonomi yang cukup beragam, mulai dari kuliner rumahan, produk fashion,
+        jasa, hingga kerajinan tangan yang dijalankan oleh warga sekitar. Melalui
+        portal ini, kenali lebih dekat berbagai Usaha Mikro, Kecil, dan Menengah
+        (UMKM) di RW 06 yang menjadi salah satu penggerak roda ekonomi warga.
         </p>
-        <KategoriList
-          kategoriList={kategoriList}
-          activeKategori={kategoriFilter}
-          onSelect={handleSelectKategori}
-        />
       </div>
 
       <PetaPersebaran />
+
+      <KategoriList
+        kategoriList={kategoriList}
+        activeKategori={kategoriFilter}
+        onSelect={handleSelectKategori}
+      />
 
       <UmkmList kategoriFilter={kategoriFilter} />
     </div>

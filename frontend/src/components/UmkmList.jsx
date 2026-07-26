@@ -38,12 +38,15 @@ function UmkmList({ kategoriFilter }) {
       <h2>Daftar UMKM</h2>
 
       <div className="umkm-filter">
-        <input
-          type="text"
-          placeholder="Cari nama UMKM..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <div className="umkm-search-box">
+          <span className="umkm-search-icon">🔍</span>
+          <input
+            type="text"
+            placeholder="Cari nama UMKM..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
 
         <select value={rtFilter} onChange={(e) => setRtFilter(e.target.value)}>
           <option value="">Semua RT</option>

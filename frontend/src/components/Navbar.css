@@ -1,6 +1,6 @@
 .navbar {
-  background-color: white;
-  border-bottom: 1px solid var(--color-border);
+  background-color: #fdf4e3;
+  border-bottom: 2px solid var(--color-primary);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -11,17 +11,9 @@
   margin: 0 auto;
   padding: 12px 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-}
-
-.navbar-brand {
-  font-size: 22px;
-  line-height: 1;
-}
-
-.navbar-brand:hover {
-  text-decoration: none;
+  position: relative;
 }
 
 .navbar-menu {
@@ -58,6 +50,8 @@
   height: 28px;
   background: none;
   padding: 0;
+  position: absolute;
+  right: 16px;
 }
 
 .navbar-toggle span {
@@ -70,6 +64,10 @@
 }
 
 @media (max-width: 640px) {
+  .navbar-inner {
+    justify-content: flex-start;
+  }
+
   .navbar-toggle {
     display: flex;
   }

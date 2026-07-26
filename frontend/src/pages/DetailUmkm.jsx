@@ -40,7 +40,7 @@ function DetailUmkm() {
   if (notFound) {
     return (
       <div className="container detail-umkm">
-        <Link className="back-link" to="/">← Kembali ke Home</Link>
+        <Link className="back-link" to="/">← Kembali ke Beranda</Link>
         <p>UMKM tidak ditemukan.</p>
       </div>
     );
@@ -48,7 +48,7 @@ function DetailUmkm() {
 
   return (
     <div className="container detail-umkm">
-      <Link className="back-link" to="/">← Kembali ke Home</Link>
+      <Link className="back-link" to="/">← Kembali ke Beranda</Link>
 
       <div className="umkm-header">
         <AvatarFoto

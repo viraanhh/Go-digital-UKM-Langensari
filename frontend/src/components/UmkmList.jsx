@@ -50,12 +50,15 @@ function UmkmList({ kategoriFilter }) {
           />
         </div>
 
-        <select value={rtFilter} onChange={(e) => setRtFilter(e.target.value)}>
-          <option value="">Semua RT</option>
-          {daftarRt.map((rt) => (
-            <option key={rt} value={rt}>RT {String(rt).padStart(2, '0')}</option>
+        <div className="umkm-rt-box">
+         <span className="umkm-rt-icon">📍</span>
+          <select value={rtFilter} onChange={(e) => setRtFilter(e.target.value)}>
+            <option value="">Semua RT</option>
+            {daftarRt.map((rt) => (
+              <option key={rt} value={rt}>RT {String(rt).padStart(2, '0')}</option>
           ))}
         </select>
+      </div>
       </div>
 
       {filteredUmkm.length === 0 ? (

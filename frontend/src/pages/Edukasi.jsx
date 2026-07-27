@@ -25,6 +25,7 @@ function Edukasi() {
   const [edukasi, setEdukasi] = useState([]);
   const [loading, setLoading] = useState(true);
   const [kategoriFilter, setKategoriFilter] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     getEdukasi()
@@ -34,9 +35,11 @@ function Edukasi() {
 
   const daftarKategori = [...new Set(edukasi.map((item) => item.kategori))].sort();
 
-  const filteredEdukasi = edukasi.filter((item) =>
-    kategoriFilter === '' || item.kategori === kategoriFilter
-  );
+  const filteredEdukasi = edukasi.filter((item) => {
+  const cocokKategori = kategoriFilter === '' || item.kategori === kategoriFilter;
+  const cocokJudul = item.judul.toLowerCase().includes(searchTerm.toLowerCase());
+  return cocokKategori && cocokJudul;
+  });
 
   if (loading) return <Spinner text="Memuat materi edukasi..." />;
 
@@ -49,6 +52,16 @@ function Edukasi() {
         keuangan, kesehatan, dan pengetahuan umum yang bermanfaat bagi pelaku usaha
         di RW 06 Langensari.
       </p>
+
+      <div className="edukasi-search-box">
+        <span className="edukasi-search-icon">🔍</span>
+        <input
+          type="text"
+          placeholder="Cari judul materi..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
       <div className="edukasi-filter-chips">
         <button

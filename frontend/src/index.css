@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
   --color-primary: #b45309;
   --color-primary-dark: #92400e;
@@ -6,7 +8,7 @@
   --color-accent-border: #f3e0b3;
   --color-footer-bg: #fbbf24;
   --color-text: #292524;
-  --color-text-muted: #78716c;
+  --color-text-muted: #57534e;
   --color-border: #ece4d3;
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -23,14 +25,15 @@
 }
 
 html {
-  background-color: #fffdf7;
+  background-color: #ffffff;
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
   color: var(--color-text);
-  line-height: 1.6;
-  background-color: #fffdf7;
+  line-height: 1.65;
+  background-color: #ffffff;
   position: relative;
 }
 
@@ -41,9 +44,8 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(560px circle at 6% -8%, rgba(251, 191, 36, 0.20), transparent 60%),
-    radial-gradient(480px circle at 102% 12%, rgba(180, 83, 9, 0.10), transparent 55%),
-    radial-gradient(680px circle at 50% 118%, rgba(254, 243, 199, 0.65), transparent 60%);
+    radial-gradient(520px circle at 4% -6%, rgba(251, 191, 36, 0.08), transparent 60%),
+    radial-gradient(460px circle at 100% 10%, rgba(180, 83, 9, 0.05), transparent 55%);
 }
 
 .container {
@@ -53,7 +55,12 @@ body::before {
 }
 
 h1, h2, h3 {
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  letter-spacing: 0.005em;
+}
+
+p, span, li {
+  font-weight: 500;
 }
 
 a {
@@ -72,6 +79,7 @@ button {
   border-radius: var(--radius-sm);
   background-color: var(--color-primary);
   color: white;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 600;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
@@ -90,7 +98,9 @@ input, select {
   padding: 10px 14px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  font-family: inherit;
   font-size: 14px;
+  font-weight: 500;
   background-color: white;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -115,7 +125,7 @@ input:focus, select:focus {
 .avatar-placeholder span {
   padding: 14px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-primary-dark);
   line-height: 1.4;
   word-break: break-word;
@@ -123,6 +133,7 @@ input:focus, select:focus {
 
 .info-kosong {
   color: var(--color-text-muted);
+  font-weight: 500;
   font-style: italic;
 }
 
@@ -144,4 +155,10 @@ input:focus, select:focus {
   background-color: var(--color-primary-light);
   text-decoration: none;
   box-shadow: var(--shadow-sm);
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 28px 0;
 }

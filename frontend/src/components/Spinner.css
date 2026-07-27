@@ -5,15 +5,15 @@
   justify-content: center;
   gap: 12px;
   padding: 40px 16px;
-  color: #666;
+  color: var(--color-text-muted);
   font-size: 14px;
 }
 
 .spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid #e5e5e5;
-  border-top-color: #2563eb;
+  border: 3px solid var(--color-primary-light);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

@@ -74,6 +74,11 @@
   border-radius: var(--radius-sm);
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.umkm-card:hover .umkm-card-thumb {
+  transform: scale(1.04);
 }
 
 .avatar-placeholder.umkm-card-thumb {

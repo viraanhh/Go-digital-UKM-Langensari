@@ -136,3 +136,18 @@
   border-radius: 999px;
   text-transform: capitalize;
 }
+
+.edukasi-image-grid {
+  overflow: hidden;
+}
+
+.edukasi-image-grid .edukasi-image {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.edukasi-image-grid .edukasi-image:hover {
+  transform: scale(1.04);
+}

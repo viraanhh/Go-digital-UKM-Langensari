@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { getUmkm } from '../services/api';
 import UmkmCard from './UmkmCard';
 import Spinner from './Spinner';
 import ServerError from '../pages/ServerError';
+import { staggerContainer, staggerItem } from '../animations';
 import './UmkmList.css';
 
 function UmkmList({ kategoriFilter }) {
@@ -59,11 +61,18 @@ function UmkmList({ kategoriFilter }) {
       {filteredUmkm.length === 0 ? (
         <p className="info-kosong">Tidak ada UMKM yang cocok.</p>
       ) : (
-        <div className="umkm-grid">
+        <motion.div
+          className="umkm-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
           {filteredUmkm.map((item) => (
-            <UmkmCard key={item.id} umkm={item} />
+            <motion.div key={item.id} variants={staggerItem}>
+              <UmkmCard umkm={item} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

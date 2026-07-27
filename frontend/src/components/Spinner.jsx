@@ -1,10 +1,10 @@
 import './Spinner.css';
 
-function Spinner({ text = 'Memuat data...' }) {
+function Spinner({ text = '' }) {
   return (
     <div className="spinner-wrapper">
       <div className="spinner"></div>
-      <p>{text}</p>
+      {text && <p>{text}</p>}
     </div>
   );
 }

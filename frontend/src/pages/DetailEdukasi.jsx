@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
@@ -7,6 +8,8 @@ import { getEdukasiDetail } from '../services/api';
 import Spinner from '../components/Spinner';
 import useTitle from '../hooks/useTitle';
 import Lightbox from '../components/Lightbox';
+import Reveal from '../components/Reveal';
+import { pageVariants, pageTransition } from '../animations';
 import './DetailEdukasi.css';
 
 function DetailEdukasi() {
@@ -44,52 +47,64 @@ function DetailEdukasi() {
   }
 
   return (
-    <div className="container">
+    <motion.div
+      className="container"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={pageTransition}
+    >
       <Link to="/edukasi" className="back-link">← Kembali ke Edukasi</Link>
-      <h1>{edukasi.judul}</h1>
-      <p><em>Kategori: {edukasi.kategori}</em></p>
 
-      {edukasi.tipe_konten === 'artikel' && (
-        edukasi.konten ? (
-          <div className="artikel-content">
-            <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-              {edukasi.konten}
-            </ReactMarkdown>
-          </div>
-        ) : (
-          <p>Data belum tersedia</p>
-        )
-      )}
+      <Reveal>
+        <h1>{edukasi.judul}</h1>
+        <p><em>Kategori: {edukasi.kategori}</em></p>
+      </Reveal>
 
-      {edukasi.tipe_konten === 'image' && (
-        edukasi.file_url ? (
-          <div className="edukasi-media-wrapper">
-            <div className="edukasi-image-grid">
-              {edukasi.file_url.split(',').map((url, index) => (
-                <img
-                  key={index}
-                  src={url.trim()}
-                  alt={`${edukasi.judul} - ${index + 1}`}
-                  className="edukasi-image"
-                  onClick={() => setLightboxIndex(index)}
-                />
-              ))}
+      <Reveal delay={0.1}>
+        {edukasi.tipe_konten === 'artikel' && (
+          edukasi.konten ? (
+            <div className="artikel-content">
+              <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                {edukasi.konten}
+              </ReactMarkdown>
             </div>
-          </div>
-        ) : (
-          <p>Gambar belum tersedia</p>
-        )
-      )}
+          ) : (
+            <p>Data belum tersedia</p>
+          )
+        )}
 
-      {edukasi.tipe_konten === 'pdf' && (
-        edukasi.file_url ? (
-          <div className="edukasi-media-wrapper">
-            <iframe src={edukasi.file_url} title={edukasi.judul} className="edukasi-pdf" />
-          </div>
-        ) : (
-          <p>Dokumen PDF belum tersedia</p>
-        )
-      )}
+        {edukasi.tipe_konten === 'image' && (
+          edukasi.file_url ? (
+            <div className="edukasi-media-wrapper">
+              <div className="edukasi-image-grid">
+                {edukasi.file_url.split(',').map((url, index) => (
+                  <img
+                    key={index}
+                    src={url.trim()}
+                    alt={`${edukasi.judul} - ${index + 1}`}
+                    className="edukasi-image"
+                    onClick={() => setLightboxIndex(index)}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p>Gambar belum tersedia</p>
+          )
+        )}
+
+        {edukasi.tipe_konten === 'pdf' && (
+          edukasi.file_url ? (
+            <div className="edukasi-media-wrapper">
+              <iframe src={edukasi.file_url} title={edukasi.judul} className="edukasi-pdf" />
+            </div>
+          ) : (
+            <p>Dokumen PDF belum tersedia</p>
+          )
+        )}
+      </Reveal>
 
       {lightboxIndex !== null && (
         <Lightbox
@@ -98,7 +113,7 @@ function DetailEdukasi() {
           onClose={() => setLightboxIndex(null)}
         />
       )}
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getEdukasi } from '../services/api';
 import './Edukasi.css';
 import Spinner from '../components/Spinner';
 import useTitle from '../hooks/useTitle';
+import { pageVariants, pageTransition, staggerContainer, staggerItem } from '../animations';
 
 const IKON_KATEGORI = {
   hukum: '⚖️',
@@ -36,15 +38,22 @@ function Edukasi() {
   const daftarKategori = [...new Set(edukasi.map((item) => item.kategori))].sort();
 
   const filteredEdukasi = edukasi.filter((item) => {
-  const cocokKategori = kategoriFilter === '' || item.kategori === kategoriFilter;
-  const cocokJudul = item.judul.toLowerCase().includes(searchTerm.toLowerCase());
-  return cocokKategori && cocokJudul;
+    const cocokKategori = kategoriFilter === '' || item.kategori === kategoriFilter;
+    const cocokJudul = item.judul.toLowerCase().includes(searchTerm.toLowerCase());
+    return cocokKategori && cocokJudul;
   });
 
-  if (loading) return <Spinner text="Memuat materi edukasi..." />;
+  if (loading) return <Spinner />;
 
   return (
-    <div className="container edukasi-list">
+    <motion.div
+      className="container edukasi-list"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={pageTransition}
+    >
       <Link className="back-link" to="/">← Kembali ke Beranda</Link>
       <h1>Edukasi</h1>
       <p className="edukasi-subtitle">
@@ -63,32 +72,44 @@ function Edukasi() {
         />
       </div>
 
-      <div className="edukasi-filter-chips">
-        <button
+      <motion.div
+        className="edukasi-filter-chips"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.button
           type="button"
+          variants={staggerItem}
           className={`edukasi-chip ${kategoriFilter === '' ? 'edukasi-chip-active' : ''}`}
           onClick={() => setKategoriFilter('')}
         >
           Semua
-        </button>
+        </motion.button>
         {daftarKategori.map((kategori) => (
-          <button
+          <motion.button
             type="button"
+            variants={staggerItem}
             key={kategori}
             className={`edukasi-chip ${kategoriFilter === kategori ? 'edukasi-chip-active' : ''}`}
             onClick={() => setKategoriFilter(kategori)}
           >
             {ikonKategori(kategori)} {kategori.charAt(0).toUpperCase() + kategori.slice(1)}
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       {filteredEdukasi.length === 0 ? (
         <p className="info-kosong">Belum ada materi edukasi.</p>
       ) : (
-        <ul className="edukasi-items">
+        <motion.ul
+          className="edukasi-items"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
           {filteredEdukasi.map((item) => (
-            <li key={item.id}>
+            <motion.li key={item.id} variants={staggerItem}>
               <Link to={`/edukasi/${item.id}`} className="edukasi-card">
                 <span className="edukasi-card-icon">{ikonKategori(item.kategori)}</span>
                 <div className="edukasi-card-body">
@@ -96,11 +117,11 @@ function Edukasi() {
                   <span className="kategori-tag">{item.kategori}</span>
                 </div>
               </Link>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       )}
-    </div>
+    </motion.div>
   );
 }
 

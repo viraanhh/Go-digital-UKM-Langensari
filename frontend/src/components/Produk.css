@@ -20,7 +20,11 @@
   border-radius: 8px;
   border: 1px solid #eee;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: transform 0.3s ease;
+}
+
+.produk-galeri-item:hover {
+  transform: scale(1.04);
 }
 
 .produk-galeri-item:hover {

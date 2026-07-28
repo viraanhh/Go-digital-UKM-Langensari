@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import { getLegalitasByUmkm } from '../services/api';
 import './Legalitas.css';
 
+function isTerpenuhi(value) {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') return value.trim().toLowerCase() === 'true';
+  return false;
+}
+
 function Legalitas({ umkmId }) {
   const [legalitas, setLegalitas] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,10 +21,10 @@ function Legalitas({ umkmId }) {
   if (loading) return null;
 
   const items = [
-    { key: 'nib', label: 'NIB', terpenuhi: !!legalitas?.nib, value: legalitas?.nib },
-    { key: 'halal', label: 'Sertifikat Halal', terpenuhi: legalitas?.halal === true, value: null },
-    { key: 'pirt', label: 'PIRT', terpenuhi: !!legalitas?.pirt, value: legalitas?.pirt },
-    { key: 'hki', label: 'HKI / Merek', terpenuhi: !!legalitas?.hki, value: legalitas?.hki },
+    { key: 'nib', label: 'NIB', terpenuhi: isTerpenuhi(legalitas?.nib) },
+    { key: 'halal', label: 'Sertifikat Halal', terpenuhi: isTerpenuhi(legalitas?.halal) },
+    { key: 'pirt', label: 'PIRT', terpenuhi: isTerpenuhi(legalitas?.pirt) },
+    { key: 'hki', label: 'HKI / Merek', terpenuhi: isTerpenuhi(legalitas?.hki) },
   ];
 
   const jumlahTerpenuhi = items.filter((item) => item.terpenuhi).length;
@@ -41,7 +47,6 @@ function Legalitas({ umkmId }) {
           <li key={item.key} className={item.terpenuhi ? 'terpenuhi' : 'belum-terpenuhi'}>
             <span className="check-icon">{item.terpenuhi ? '✓' : '✗'}</span>
             <span>{item.label}</span>
-            {item.terpenuhi && item.value && <span className="item-value">({item.value})</span>}
           </li>
         ))}
       </ul>

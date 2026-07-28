@@ -2,6 +2,11 @@
   margin-top: 32px;
 }
 
+.section-kontak h2 {
+  font-size: 19px;
+  margin-bottom: 12px;
+}
+
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;

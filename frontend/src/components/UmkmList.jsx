@@ -33,7 +33,7 @@ function UmkmList({ kategoriFilter }) {
   });
 
   if (serverError) return <ServerError />;
-  if (loading) return <Spinner text="Memuat data UMKM..." />;
+  if (loading) return <Spinner />;
 
   return (
     <div className="umkm-list">

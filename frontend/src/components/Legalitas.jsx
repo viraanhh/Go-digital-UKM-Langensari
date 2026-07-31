@@ -23,7 +23,6 @@ function Legalitas({ umkmId }) {
   const items = [
     { key: 'nib', label: 'NIB', terpenuhi: isTerpenuhi(legalitas?.nib) },
     { key: 'halal', label: 'Sertifikat Halal', terpenuhi: isTerpenuhi(legalitas?.halal) },
-    { key: 'pirt', label: 'PIRT', terpenuhi: isTerpenuhi(legalitas?.pirt) },
     { key: 'hki', label: 'HKI / Merek', terpenuhi: isTerpenuhi(legalitas?.hki) },
   ];
 
